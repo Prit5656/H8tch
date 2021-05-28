@@ -1,6 +1,6 @@
 describe('Search bar', function () {
 	beforeEach(function () {
-		cy.visit(Cypress.env('homePage'))
+		cy.visit('/')
 	})
 	it('Should be visible', function () {
 		cy.get('#searchInput').should('be.visible')
@@ -17,11 +17,11 @@ describe('Search bar', function () {
 			'The Forgotten City'
 		)
 	})
-	it('Clear should be enabled when there is a search input', function () {
+	it('Should enabled clear when there is a search input', function () {
 		cy.get('#searchInput').type('Hi')
 		cy.get('[aria-label="Clear Search"]').should('not.have.disabled')
 	})
-	it('Clear Should be disabled when there is no search input', function () {
+	it('Should be disabled clear when there is no search input', function () {
 		cy.get('[aria-label="Clear Search"]').should('be.disabled')
 	})
 })
