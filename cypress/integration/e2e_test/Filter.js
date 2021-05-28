@@ -14,16 +14,16 @@ describe('Filter', function () {
 	})
 	it('Should able to filter by - Genre: Action', function () {
 		cy.get('[data-testid=egs-filter-sidebar]').contains('Action').click()
-		cy.url().should('include', 'Action') // => true
+		cy.url().should('include', 'Action') 
 	})
 	it('Should able to filter by - Genre: Open World', function () {
 		cy.get('[data-testid=egs-filter-sidebar]').contains('Open World').click()
-		cy.url().should('include', 'Open%20World') // => true
+		cy.url().should('include', 'Open%20World') 
 		cy.get('[data-testid=egs-filter-sidebar]').contains('Open World').click()
 	})
 	it('Should able to filter by - Genre: Shooter', function () {
 		cy.get('[data-testid=egs-filter-sidebar]').contains('Shooter').click()
-		cy.url().should('include', 'Shooter') // => true
+		cy.url().should('include', 'Shooter') 
 		cy.get('[data-testid=egs-filter-sidebar]').contains('Shooter').click()
 	})
 })
