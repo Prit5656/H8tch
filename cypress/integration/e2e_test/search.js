@@ -1,20 +1,27 @@
 describe('Search bar', function () {
-	it('Should be visible', function () {})
+	beforeEach(function () {
+		cy.visit(Cypress.env('homePage'))
+	})
+	it('Should be visible', function () {
+		cy.get('#searchInput').should('be.visible')
+	})
 	it('Should have a placeholder and search icon ', function () {
-		cy.visit('https://www.epicgames.com/store/en-US').as('visit')
-		//cy.wait('@visit').its('status').should('equal', 200)
 		cy.wait(1000)
 		cy.get('#searchInput').should('have.attr', 'placeholder', 'Search')
 	})
-	it.only('Should be diabled when there is no search', function () {
-		cy.visit('https://www.epicgames.com/store/en-US')
-		//cy.wait('@visit').its('status').should('equal', 200)
-		cy.wait(1000)
-		cy.get('[data-testid=search-bar]').should(
+	it('Should be able to search', function () {
+		cy.get('#searchInput').type('The Forgotten city').type('{enter}')
+		cy.get('[data-testid="picture-image"]').should(
 			'have.attr',
-			'placeholder',
-			'Search'
+			'alt',
+			'The Forgotten City'
 		)
-		cy.get('.SearchBar-searchOpenButton_840538aa')
+	})
+	it('Clear should be enabled when there is a search input', function () {
+		cy.get('#searchInput').type('Hi')
+		cy.get('[aria-label="Clear Search"]').should('not.have.disabled')
+	})
+	it('Clear Should be disabled when there is no search input', function () {
+		cy.get('[aria-label="Clear Search"]').should('be.disabled')
 	})
 })
